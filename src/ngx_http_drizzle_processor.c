@@ -347,6 +347,8 @@ ngx_http_upstream_drizzle_recv_cols(ngx_http_request_t *r,
         if (col) {
             rc = ngx_http_drizzle_output_col(r, col);
 
+            dd_drizzle_column(col);
+
             drizzle_column_free(col);
 
             if (rc == NGX_ERROR || rc >= NGX_HTTP_SPECIAL_RESPONSE) {
@@ -363,8 +365,6 @@ ngx_http_upstream_drizzle_recv_cols(ngx_http_request_t *r,
 
             return ngx_http_upstream_drizzle_recv_rows(r, c, dp, dc);
         }
-
-        dd_drizzle_column(col);
     }
 
     /* impossible to reach here */
