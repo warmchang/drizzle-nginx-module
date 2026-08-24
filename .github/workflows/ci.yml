@@ -73,7 +73,7 @@ jobs:
           git clone https://github.com/openresty/headers-more-nginx-module.git ../headers-more-nginx-module
           git clone https://github.com/openresty/rds-json-nginx-module.git ../rds-json-nginx-module
           git clone https://github.com/openresty/openresty.git ../ngx_openresty
-          sudo mysql -uroot -e "create database ngx_test; CREATE USER 'ngx_test'@'%' IDENTIFIED WITH mysql_native_password BY 'ngx_test'; grant all on ngx_test.* to 'ngx_test'@'%'; flush privileges;"
+          mysql -uroot -proot -e "create database ngx_test; CREATE USER 'ngx_test'@'%' IDENTIFIED WITH mysql_native_password BY 'ngx_test'; grant all on ngx_test.* to 'ngx_test'@'%'; flush privileges;"
           tar xzf download-cache/drizzle7-2011.07.21.tar.gz && cd drizzle7-2011.07.21
           ./configure --prefix=$LIBDRIZZLE_PREFIX --without-server > build.log 2>&1 || (cat build.log && exit 1)
           sudo PATH=$PATH make libdrizzle-1.0 install-libdrizzle-1.0 > build.log 2>&1 || (cat build.log && exit 1)
